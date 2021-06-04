@@ -1,0 +1,31 @@
+---
+title: "DFB Pre Incident Plan Inspection"
+output: html_notebook
+---
+
+# Background
+
+This notebook outlines the quality assurance of the DFB PIP table.
+
+The chunk below loads some libraries that we will need. 
+
+```{r setup, message=FALSE}
+library(tidyverse)
+library(lubridate)
+library(magrittr)
+```
+We're going to load the cards and the contacts.
+
+```{r load-data}
+pip_cards_raw <- readxl::read_xlsx("data/card_data.xlsx")
+pip_contacts <- read_csv("data/pip_contacts.csv")
+```
+
+Now we will do some manipulation.
+
+```{r data-cleaning}
+pip_cards_raw %>%
+  separate(Category, into = c("c1", "c2")) %>% 
+  select(c1, c2)
+```
+
